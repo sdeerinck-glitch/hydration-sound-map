@@ -19,6 +19,7 @@
       margin-bottom: 10px;
       letter-spacing: 1px;
       color: #dbeafe;
+      text-shadow: 0 0 14px rgba(140, 200, 255, 0.2);
     }
 
     .subtitle {
@@ -53,7 +54,7 @@
       background: rgba(95, 155, 235, 0.12);
       border: 1px solid rgba(140, 190, 255, 0.22);
       color: #eef4ff;
-      padding: 18px;
+      padding: 22px 18px;
       border-radius: 16px;
       cursor: pointer;
       font-size: 1rem;
@@ -69,21 +70,47 @@
       box-shadow: 0 0 18px rgba(80, 140, 220, 0.22);
     }
 
+    .building-btn.active {
+      background: rgba(140, 210, 255, 0.3);
+      border-color: rgba(190, 230, 255, 0.9);
+      box-shadow:
+        0 0 12px rgba(120, 200, 255, 0.4),
+        0 0 24px rgba(120, 200, 255, 0.35),
+        0 0 40px rgba(120, 200, 255, 0.25);
+      transform: translateY(-2px) scale(1.01);
+    }
+
     .building-name {
       display: block;
       font-size: 1rem;
-      margin-bottom: 8px;
       color: #f3f8ff;
     }
 
-    .building-total {
-      display: block;
-      font-size: 0.9rem;
-      color: #b7cde8;
+    .data-panel {
+      max-width: 700px;
+      margin: 35px auto 0;
+      padding: 24px;
+      border-radius: 18px;
+      background: rgba(95, 155, 235, 0.12);
+      border: 1px solid rgba(140, 190, 255, 0.22);
+      box-shadow: 0 0 18px rgba(30, 70, 130, 0.12);
+    }
+
+    .data-panel h2 {
+      margin-top: 0;
+      margin-bottom: 10px;
+      color: #eef6ff;
+      font-size: 1.4rem;
+    }
+
+    .data-panel p {
+      margin: 8px 0;
+      color: #d3e6ff;
+      line-height: 1.6;
     }
 
     #message {
-      margin-top: 35px;
+      margin-top: 10px;
       font-style: italic;
       color: #d3e6ff;
       min-height: 24px;
@@ -109,114 +136,107 @@
   <div class="key">
     <strong>Key</strong><br><br>
     Each button represents one CSUSM building with a hydration station.
-    Each building will be paired with a recorded vial tone.
-    The sound for each vial is based on a liquid level assigned from that building’s bottle-saving total.
-    Differences in tone reflect differences in the data.
+    When selected, the building’s data appears below and its recorded vial tone can be played.
+    Differences in tone reflect differences in the dataset.
     Together, the webpage acts as an interactive sound-based translation of campus sustainability impact.
   </div>
 
   <div class="grid">
-    <button class="building-btn" onclick="playSound('Academic Hall')">
+    <button class="building-btn" onclick="playSound(this, 'Academic Hall', '174,366')">
       <span class="building-name">Academic Hall</span>
-      <span class="building-total">174,366 bottles saved</span>
     </button>
 
-    <button class="building-btn" onclick="playSound('Arts Hall')">
+    <button class="building-btn" onclick="playSound(this, 'Arts Hall', '93,048')">
       <span class="building-name">Arts Hall</span>
-      <span class="building-total">93,048 bottles saved</span>
     </button>
 
-    <button class="building-btn" onclick="playSound('Clarke Field House (CFH)')">
+    <button class="building-btn" onclick="playSound(this, 'Clarke Field House (CFH)', '858,672')">
       <span class="building-name">Clarke Field House (CFH)</span>
-      <span class="building-total">858,672 bottles saved</span>
     </button>
 
-    <button class="building-btn" onclick="playSound('Administrative Building (ADM)')">
+    <button class="building-btn" onclick="playSound(this, 'Administrative Building (ADM)', '492,586')">
       <span class="building-name">Administrative Building (ADM)</span>
-      <span class="building-total">492,586 bottles saved</span>
     </button>
 
-    <button class="building-btn" onclick="playSound('Extended Learning Building (ELB)')">
+    <button class="building-btn" onclick="playSound(this, 'Extended Learning Building (ELB)', '189,153')">
       <span class="building-name">Extended Learning Building (ELB)</span>
-      <span class="building-total">189,153 bottles saved</span>
     </button>
 
-    <button class="building-btn" onclick="playSound('Kellogg Library')">
+    <button class="building-btn" onclick="playSound(this, 'Kellogg Library', '722,537')">
       <span class="building-name">Kellogg Library</span>
-      <span class="building-total">722,537 bottles saved</span>
     </button>
 
-    <button class="building-btn" onclick="playSound('Markstein')">
+    <button class="building-btn" onclick="playSound(this, 'Markstein', '696,803')">
       <span class="building-name">Markstein</span>
-      <span class="building-total">696,803 bottles saved</span>
     </button>
 
-    <button class="building-btn" onclick="playSound('Social & Behavioral Sciences Building (SBSB)')">
+    <button class="building-btn" onclick="playSound(this, 'Social & Behavioral Sciences Building (SBSB)', '308,742')">
       <span class="building-name">Social & Behavioral Sciences Building (SBSB)</span>
-      <span class="building-total">308,742 bottles saved</span>
     </button>
 
-    <button class="building-btn" onclick="playSound('Science Hall 1 (SCI 1)')">
+    <button class="building-btn" onclick="playSound(this, 'Science Hall 1 (SCI 1)', '52,675')">
       <span class="building-name">Science Hall 1 (SCI 1)</span>
-      <span class="building-total">52,675 bottles saved</span>
     </button>
 
-    <button class="building-btn" onclick="playSound('Science Hall 2 (SCI 2)')">
+    <button class="building-btn" onclick="playSound(this, 'Science Hall 2 (SCI 2)', '127,182')">
       <span class="building-name">Science Hall 2 (SCI 2)</span>
-      <span class="building-total">127,182 bottles saved</span>
     </button>
 
-    <button class="building-btn" onclick="playSound('Sports Center')">
+    <button class="building-btn" onclick="playSound(this, 'Sports Center', '67,254')">
       <span class="building-name">Sports Center</span>
-      <span class="building-total">67,254 bottles saved</span>
     </button>
 
-    <button class="building-btn" onclick="playSound('Student Health & Counseling Services (SHCS)')">
+    <button class="building-btn" onclick="playSound(this, 'Student Health & Counseling Services (SHCS)', '39,817')">
       <span class="building-name">Student Health & Counseling Services (SHCS)</span>
-      <span class="building-total">39,817 bottles saved</span>
     </button>
 
-    <button class="building-btn" onclick="playSound('Sustainable Food Projects Garden')">
+    <button class="building-btn" onclick="playSound(this, 'Sustainable Food Projects Garden', '1,902')">
       <span class="building-name">Sustainable Food Projects Garden</span>
-      <span class="building-total">1,902 bottles saved</span>
     </button>
 
-    <button class="building-btn" onclick="playSound('University Hall')">
+    <button class="building-btn" onclick="playSound(this, 'University Hall', '106,903')">
       <span class="building-name">University Hall</span>
-      <span class="building-total">106,903 bottles saved</span>
     </button>
 
-    <button class="building-btn" onclick="playSound('University Service Building')">
+    <button class="building-btn" onclick="playSound(this, 'University Service Building', '108,263')">
       <span class="building-name">University Service Building</span>
-      <span class="building-total">108,263 bottles saved</span>
     </button>
 
-    <button class="building-btn" onclick="playSound('University Student Union (USU)')">
+    <button class="building-btn" onclick="playSound(this, 'University Student Union (USU)', '444,899')">
       <span class="building-name">University Student Union (USU)</span>
-      <span class="building-total">444,899 bottles saved</span>
     </button>
 
-    <button class="building-btn" onclick="playSound('University Village Apartments (UVA)')">
+    <button class="building-btn" onclick="playSound(this, 'University Village Apartments (UVA)', '94,067')">
       <span class="building-name">University Village Apartments (UVA)</span>
-      <span class="building-total">94,067 bottles saved</span>
     </button>
 
-    <button class="building-btn" onclick="playSound('Viasat Engineering Pavilion')">
+    <button class="building-btn" onclick="playSound(this, 'Viasat Engineering Pavilion', '79,419')">
       <span class="building-name">Viasat Engineering Pavilion</span>
-      <span class="building-total">79,419 bottles saved</span>
     </button>
   </div>
 
-  <p id="message">Audio recordings will appear here once added.</p>
+  <div class="data-panel">
+    <h2 id="selected-building">Select a building</h2>
+    <p id="selected-data">The bottle-saving total will appear here when a building is clicked.</p>
+    <p id="message">Audio will play here once uploaded.</p>
+  </div>
 
   <div class="footer">
     Source: “Hydration Stations | Sustainability | CSUSM”
   </div>
 
   <script>
-    function playSound(buildingName) {
+    function playSound(button, buildingName, bottleTotal) {
+      const allButtons = document.querySelectorAll('.building-btn');
+      allButtons.forEach(btn => btn.classList.remove('active'));
+
+      button.classList.add('active');
+
+      document.getElementById("selected-building").textContent = buildingName;
+      document.getElementById("selected-data").textContent =
+        "Bottle-saving total: " + bottleTotal + " plastic bottles saved";
       document.getElementById("message").textContent =
-        "Audio for " + buildingName + " will play here once you upload the sound file.";
+        "Resonance activated for " + buildingName + ". Audio will play here once uploaded.";
     }
   </script>
 
