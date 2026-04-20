@@ -1,14 +1,219 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Campus Resonance</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Georgia, serif;
+      background: linear-gradient(to bottom, #111111, #1b1b1b, #0d0d0d);
+      color: #f2f2f2;
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 10px;
+      letter-spacing: 1px;
+    }
+
+    .subtitle {
+      max-width: 700px;
+      margin: 0 auto 40px;
+      color: #cfcfcf;
+      line-height: 1.6;
+      font-size: 1rem;
+    }
+
+    .key {
+      max-width: 800px;
+      margin: 0 auto 50px;
+      padding: 20px;
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 14px;
+      background: rgba(255,255,255,0.04);
+      text-align: left;
+      line-height: 1.7;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      gap: 18px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .building-btn {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.15);
+      color: #f2f2f2;
+      padding: 18px;
+      border-radius: 16px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: 0.25s ease;
+      min-height: 90px;
+    }
+
+    .building-btn:hover {
+      transform: translateY(-3px);
+      background: rgba(255,255,255,0.1);
+      border-color: rgba(255,255,255,0.25);
+    }
+
+    .building-name {
+      display: block;
+      font-size: 1rem;
+      margin-bottom: 8px;
+    }
+
+    .building-total {
+      display: block;
+      font-size: 0.9rem;
+      color: #bbbbbb;
+    }
+
+    #message {
+      margin-top: 35px;
+      font-style: italic;
+      color: #d6d6d6;
+      min-height: 24px;
+    }
+
+    .footer {
+      margin-top: 60px;
+      font-size: 0.9rem;
+      color: #aaaaaa;
+      line-height: 1.6;
+    }
+  </style>
 </head>
 <body>
+
   <h1>Campus Resonance</h1>
-  <p>Click the button to hear the sound for Academic Hall.</p>
 
-  <button onclick="document.getElementById('sound1').play()">Academic Hall</button>
+  <p class="subtitle">
+    An interactive translation of CSUSM hydration station data into sound.
+    Each building becomes a clickable point of resonance based on its bottle-saving total.
+  </p>
 
-  <audio id="sound1" src="academichall.mp3"></audio>
+  <div class="key">
+    <strong>Key</strong><br><br>
+    Each button represents one CSUSM building with a hydration station.
+    Each building will be paired with a recorded vial tone.
+    The sound for each vial is based on a liquid level assigned from that building’s bottle-saving total.
+    Differences in tone reflect differences in the data.
+    Together, the webpage acts as an interactive sound-based translation of campus sustainability impact.
+  </div>
+
+  <div class="grid">
+    <button class="building-btn" onclick="playSound('Academic Hall')">
+      <span class="building-name">Academic Hall</span>
+      <span class="building-total">174,366 bottles saved</span>
+    </button>
+
+    <button class="building-btn" onclick="playSound('Arts Hall')">
+      <span class="building-name">Arts Hall</span>
+      <span class="building-total">93,048 bottles saved</span>
+    </button>
+
+    <button class="building-btn" onclick="playSound('Clarke Field House (CFH)')">
+      <span class="building-name">Clarke Field House (CFH)</span>
+      <span class="building-total">858,672 bottles saved</span>
+    </button>
+
+    <button class="building-btn" onclick="playSound('Administrative Building (ADM)')">
+      <span class="building-name">Administrative Building (ADM)</span>
+      <span class="building-total">492,586 bottles saved</span>
+    </button>
+
+    <button class="building-btn" onclick="playSound('Extended Learning Building (ELB)')">
+      <span class="building-name">Extended Learning Building (ELB)</span>
+      <span class="building-total">189,153 bottles saved</span>
+    </button>
+
+    <button class="building-btn" onclick="playSound('Kellogg Library')">
+      <span class="building-name">Kellogg Library</span>
+      <span class="building-total">722,537 bottles saved</span>
+    </button>
+
+    <button class="building-btn" onclick="playSound('Markstein')">
+      <span class="building-name">Markstein</span>
+      <span class="building-total">696,803 bottles saved</span>
+    </button>
+
+    <button class="building-btn" onclick="playSound('Social & Behavioral Sciences Building (SBSB)')">
+      <span class="building-name">Social & Behavioral Sciences Building (SBSB)</span>
+      <span class="building-total">308,742 bottles saved</span>
+    </button>
+
+    <button class="building-btn" onclick="playSound('Science Hall 1 (SCI 1)')">
+      <span class="building-name">Science Hall 1 (SCI 1)</span>
+      <span class="building-total">52,675 bottles saved</span>
+    </button>
+
+    <button class="building-btn" onclick="playSound('Science Hall 2 (SCI 2)')">
+      <span class="building-name">Science Hall 2 (SCI 2)</span>
+      <span class="building-total">127,182 bottles saved</span>
+    </button>
+
+    <button class="building-btn" onclick="playSound('Sports Center')">
+      <span class="building-name">Sports Center</span>
+      <span class="building-total">67,254 bottles saved</span>
+    </button>
+
+    <button class="building-btn" onclick="playSound('Student Health & Counseling Services (SHCS)')">
+      <span class="building-name">Student Health & Counseling Services (SHCS)</span>
+      <span class="building-total">39,817 bottles saved</span>
+    </button>
+
+    <button class="building-btn" onclick="playSound('Sustainable Food Projects Garden')">
+      <span class="building-name">Sustainable Food Projects Garden</span>
+      <span class="building-total">1,902 bottles saved</span>
+    </button>
+
+    <button class="building-btn" onclick="playSound('University Hall')">
+      <span class="building-name">University Hall</span>
+      <span class="building-total">106,903 bottles saved</span>
+    </button>
+
+    <button class="building-btn" onclick="playSound('University Service Building')">
+      <span class="building-name">University Service Building</span>
+      <span class="building-total">108,263 bottles saved</span>
+    </button>
+
+    <button class="building-btn" onclick="playSound('University Student Union (USU)')">
+      <span class="building-name">University Student Union (USU)</span>
+      <span class="building-total">444,899 bottles saved</span>
+    </button>
+
+    <button class="building-btn" onclick="playSound('University Village Apartments (UVA)')">
+      <span class="building-name">University Village Apartments (UVA)</span>
+      <span class="building-total">94,067 bottles saved</span>
+    </button>
+
+    <button class="building-btn" onclick="playSound('Viasat Engineering Pavilion')">
+      <span class="building-name">Viasat Engineering Pavilion</span>
+      <span class="building-total">79,419 bottles saved</span>
+    </button>
+  </div>
+
+  <p id="message">Audio recordings will appear here once added.</p>
+
+  <div class="footer">
+    Source: “Hydration Stations | Sustainability | CSUSM”
+  </div>
+
+  <script>
+    function playSound(buildingName) {
+      document.getElementById("message").textContent =
+        "Audio for " + buildingName + " will play here once you upload the sound file.";
+    }
+  </script>
+
 </body>
 </html>
